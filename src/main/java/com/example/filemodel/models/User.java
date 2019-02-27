@@ -1,5 +1,7 @@
 package com.example.filemodel.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +17,17 @@ public class User {
     @Column
     private String name;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
     private List<Folder> folders;
 
     public User(String name) {
         this.name = name;
         this.folders = new ArrayList<>();
+    }
+
+    public User(){
+
     }
 
     public Long getId() {

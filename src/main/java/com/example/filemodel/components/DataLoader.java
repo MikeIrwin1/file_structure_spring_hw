@@ -40,16 +40,18 @@ public class DataLoader implements ApplicationRunner {
         File profilePic = new File("My Face", "jpeg", 2, pictures);
         fileRepository.save(profilePic);
 
+        //add folders to user then save to db
+        jeff.addFolder(documents);
+        jeff.addFolder(pictures);
+        userRepository.save(jeff);
+
         //add files to folder then save to db
         documents.addFile(cv);
         pictures.addFile(profilePic);
         folderRepository.save(documents);
         folderRepository.save(pictures);
 
-        //add folders to user then save to db
-        jeff.addFolder(documents);
-        jeff.addFolder(pictures);
-        userRepository.save(jeff);
+
 
     }
 
